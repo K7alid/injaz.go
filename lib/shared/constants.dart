@@ -5,4 +5,5 @@ const primaryColor = Color(0xFF1F96CC);
 const secondaryColor = Color(0xFF103357);
 const landColor = Color(0xFFC4C7CE);
 const landColor2 = Color(0xFFECEDEF);
+const chatColor = Color(0xFF193686);
 const String assetImageBaseUrl = 'assets/images/';
