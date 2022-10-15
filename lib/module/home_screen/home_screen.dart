@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:injaz_go/module/home_screen/task_model.dart';
+import 'package:injaz_go/module/home_screen/model/task_model.dart';
 import 'package:injaz_go/shared/components.dart';
 import 'package:injaz_go/shared/constants.dart';
 import 'package:injaz_go/shared/widgets/custom_text.dart';
