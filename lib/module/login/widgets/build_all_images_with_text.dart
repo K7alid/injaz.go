@@ -41,7 +41,7 @@ class BuildAllImagesWithText extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             buildImageWithText(
-              text: 'Inventory',
+              text: 'Store',
               isSelected: cubit.isSelectedList[3],
               onTap: () {
                 cubit.changeIconToggle(3);
@@ -55,7 +55,7 @@ class BuildAllImagesWithText extends StatelessWidget {
               },
             ),
             buildImageWithText(
-              text: 'Timesheet',
+              text: 'Time',
               isSelected: cubit.isSelectedList[5],
               onTap: () {
                 cubit.changeIconToggle(5);

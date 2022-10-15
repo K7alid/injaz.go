@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
         var cubit = LoginCubit.get(context);
 
         return Scaffold(
-          backgroundColor: defaultColor,
+          backgroundColor: secondaryColor,
           body: SafeArea(
             child: Center(
               child: SingleChildScrollView(
@@ -37,7 +37,7 @@ class LoginScreen extends StatelessWidget {
                         Stack(
                           children: [
                             Container(
-                              color: defaultColor,
+                              color: secondaryColor,
                               height: MediaQuery.of(context).size.height * 0.50,
                               width: double.infinity,
                             ),
@@ -48,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                                     MediaQuery.of(context).size.height * 0.95,
                                 child: Padding(
                                   padding:
-                                      const EdgeInsetsDirectional.only(top: 50),
+                                      const EdgeInsetsDirectional.only(top: 35),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -62,14 +62,16 @@ class LoginScreen extends StatelessWidget {
                                             Radius.circular(15),
                                           ),
                                         ),
-                                        height: 150,
+                                        height: 185,
                                         width: double.infinity,
                                         margin: EdgeInsets.symmetric(
-                                            horizontal: 30),
+                                          horizontal: 50,
+                                        ),
                                         padding: EdgeInsets.all(10),
                                         child: SingleChildScrollView(
                                           child: BuildAllImagesWithText(
-                                              cubit: cubit),
+                                            cubit: cubit,
+                                          ),
                                         ),
                                       ),
                                       spaceInHeight(height: 20),

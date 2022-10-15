@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:injaz_go/module/home_screen/home_screen.dart';
 import 'package:injaz_go/shared/components.dart';
 import 'package:injaz_go/shared/constants.dart';
 import 'package:injaz_go/shared/widgets/custom_button.dart';
@@ -73,10 +74,11 @@ class BuildUsernameAndPasswordPart extends StatelessWidget {
               spaceInHeight(height: 20),
               CustomButton(
                 onPressed: () {
+                  navigateTo(context, HomeScreen());
                   if (formKey.currentState!.validate()) {}
                 },
                 radius: 7,
-                background: defaultColor,
+                background: secondaryColor,
                 text: 'login',
               ),
             ],

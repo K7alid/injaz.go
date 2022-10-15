@@ -11,7 +11,7 @@ class RouteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
         initialIndex: 0,
-        length: 4,
+        length: 2,
         child: Scaffold(
           backgroundColor: landColor,
           appBar: AppBar(

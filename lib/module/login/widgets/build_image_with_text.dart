@@ -18,6 +18,8 @@ Widget buildImageWithText({
           children: [
             Image.asset(
               '$assetImageBaseUrl$text.png',
+              height: 50,
+              width: 50,
             ),
             CustomText(
               text: text,
