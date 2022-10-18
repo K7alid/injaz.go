@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:injaz_go/app_localization.dart';
-import 'package:injaz_go/module/chat_screen/chat_screen.dart';
+import 'package:injaz_go/module/home_screen/home_screen.dart';
 
 import 'module/login/cubit/cubit.dart';
 import 'module/login/cubit/states.dart';
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
                 }
                 return supportedLocales.first;
               },
-              home: ChatScreen(),
+              home: HomeScreen(),
             );
           },
         ));

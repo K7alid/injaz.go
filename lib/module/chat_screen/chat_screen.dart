@@ -7,9 +7,9 @@ import 'package:injaz_go/shared/components.dart';
 import 'package:injaz_go/shared/constants.dart';
 import 'package:injaz_go/shared/widgets/custom_text.dart';
 
-class ChatScreen extends StatelessWidget {
-  var messageController = TextEditingController();
+var messageController = TextEditingController();
 
+class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -18,6 +18,15 @@ class ChatScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext context) => chatScreenBuilder(context),
+                );
+              },
+              child: Icon(Icons.send_outlined),
+            ),
             backgroundColor: chatColor,
             body: SafeArea(
               child: Column(
@@ -29,56 +38,6 @@ class ChatScreen extends StatelessWidget {
                       text: 'Welcome, Let us help you?',
                       size: 30,
                       color: Colors.white,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadiusDirectional.only(
-                            topStart: Radius.circular(35),
-                            topEnd: Radius.circular(35)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: ListView.separated(
-                                itemBuilder: (context, index) =>
-                                    buildChatContainer(index),
-                                separatorBuilder: (context, index) =>
-                                    spaceInHeight(height: 25),
-                                itemCount: chats.length,
-                              ),
-                            ),
-                            Container(
-                              height: 60,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.grey,
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              padding: EdgeInsets.all(7),
-                              child: ListView(
-                                reverse: true,
-                                children: <Widget>[
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                      hintText: 'Enter anything',
-                                    ),
-                                    onFieldSubmitted: (value) {
-                                      ChatCubit.get(context).sendMessage(value);
-                                      messageController.clear();
-                                    },
-                                    controller: messageController,
-                                  ),
-                                ].reversed.toList(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ),
                   ),
                 ],
@@ -160,3 +119,50 @@ Widget buildChatContainer(index) => Column(
         ),
       ],
     );
+
+Widget chatScreenBuilder(context) => Container(
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadiusDirectional.only(
+        topStart: Radius.circular(35), topEnd: Radius.circular(35)),
+  ),
+  child: Padding(
+    padding: const EdgeInsets.all(20.0),
+    child: Column(
+      children: [
+        Expanded(
+          child: ListView.separated(
+            itemBuilder: (context, index) => buildChatContainer(index),
+            separatorBuilder: (context, index) =>
+                spaceInHeight(height: 25),
+            itemCount: chats.length,
+          ),
+        ),
+        Container(
+          height: 60,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          padding: EdgeInsets.all(7),
+          child: ListView(
+            reverse: true,
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Enter anything',
+                ),
+                onFieldSubmitted: (value) {
+                  ChatCubit.get(context).sendMessage(value);
+                  messageController.clear();
+                },
+                controller: messageController,
+              ),
+            ].reversed.toList(),
+          ),
+        ),
+      ],
+    ),
+  ),
+);
