@@ -34,18 +34,14 @@ class RouteScreen extends StatelessWidget {
               )
             ],
             bottom: const TabBar(
+              unselectedLabelColor: Colors.grey,
+              labelColor: Colors.black,
               tabs: <Widget>[
                 Tab(
-                  child: CustomText(
-                    text: 'Route',
-                    color: Colors.black,
-                  ),
+                  text: 'Route',
                 ),
                 Tab(
-                  child: CustomText(
-                    text: 'All Customers',
-                    color: Colors.black,
-                  ),
+                  text: 'All Customers',
                 ),
               ],
             ),
