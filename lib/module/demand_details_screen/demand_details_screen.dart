@@ -37,28 +37,31 @@ class DemandDetailsScreen extends StatelessWidget {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(25.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
               buildTextWithFormField(
                 text: 'رقم الطلب',
                 hintText: '12345679',
+                backgroundColor: Color(0xFFF7F8FA),
               ),
               spaceInHeight(height: 7),
               buildTextWithFormField(
                 text: 'مقدم الطلب',
                 hintText: 'امجد محمد الدسوقي',
+                backgroundColor: Color(0xFFF7F8FA),
               ),
               spaceInHeight(height: 7),
               buildTextWithFormField(
                 text: 'تاريخ الطلب',
                 hintText: '29/10/2022',
+                backgroundColor: Color(0xFFF7F8FA),
               ),
               spaceInHeight(height: 37),
               Expanded(
                 child: ListView.separated(
                   itemBuilder: (context, state) =>
-                      buildContainerWithCircularBox(title: 'البيانات الأساسية'),
+                      buildContainerWithCircularBox(),
                   separatorBuilder: (context, state) =>
                       spaceInHeight(height: 15),
                   itemCount: 8,

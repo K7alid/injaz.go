@@ -3,7 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:injaz_go/shared/constants.dart';
 import 'package:injaz_go/shared/widgets/custom_text.dart';
 
-Widget buildTextWithFormField({required String text, String hintText = ''}) =>
+Widget buildTextWithFormField({
+  required String text,
+  String hintText = '',
+  double width = 250,
+  double paddingFromEnd = 25,
+  Color backgroundColor = Colors.white,
+}) =>
     Row(
       children: [
         ScreenUtilInit(
@@ -16,14 +22,14 @@ Widget buildTextWithFormField({required String text, String hintText = ''}) =>
         ),
         Spacer(),
         Container(
-          margin: EdgeInsetsDirectional.only(end: 25),
+          margin: EdgeInsetsDirectional.only(end: paddingFromEnd),
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey.shade300),
             borderRadius: BorderRadius.circular(10),
-            color: Color(0xFFF7F8FA),
+            color: backgroundColor,
           ),
-          height: 30,
-          width: 250,
+          height: 35,
+          width: width,
           padding: EdgeInsets.symmetric(horizontal: 15),
           child: TextFormField(
             style: TextStyle(fontSize: 12),
