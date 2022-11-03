@@ -46,6 +46,13 @@ dependencies:
   flutter_neat_and_clean_calendar: ^0.3.9+23
   percent_indicator: ^4.2.2
   expandable: ^5.0.1
+  data_connection_checker: ^0.3.4
+  connectivity_plus: ^3.0.2
+  dio: ^4.0.6
+  dio_http2_adapter: ^2.0.0
+  http: ^0.13.5
+  shared_preferences: ^2.0.15
+  conditional_builder_null_safety: ^0.0.6
 
 dev_dependencies:
   flutter_test:

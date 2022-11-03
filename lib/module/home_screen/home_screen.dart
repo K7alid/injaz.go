@@ -4,6 +4,7 @@ import 'package:injaz_go/module/home_screen/widgets/build_grid_view_item.dart';
 import 'package:injaz_go/module/route_screen/route_screen.dart';
 import 'package:injaz_go/shared/components.dart';
 import 'package:injaz_go/shared/constants.dart';
+import 'package:injaz_go/shared/network/local/cache_helper.dart';
 import 'package:injaz_go/shared/widgets/custom_text.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,18 +16,27 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: CustomText(text: 'SLA-MOBILE-DEMO'),
+        title: const CustomText(text: 'SLA-MOBILE-DEMO'),
         actions: [
           IconButton(
+            onPressed: () {
+              CacheHelper.signOut(context);
+            },
+            icon: const Icon(
+              Icons.logout,
+              color: primaryColor,
+            ),
+          ),
+          IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.person_outline,
               color: primaryColor,
             ),
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.menu,
               color: primaryColor,
             ),
@@ -39,10 +49,10 @@ class HomeScreen extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                navigateTo(context, RouteScreen());
+                navigateTo(context, const RouteScreen());
               },
               child: Container(
-                padding: EdgeInsets.all(7),
+                padding: const EdgeInsets.all(7),
                 height: 70,
                 decoration: BoxDecoration(
                   color: primaryColor,
@@ -54,7 +64,7 @@ class HomeScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         CustomText(
                           text: 'Start Route',
                           color: Colors.white,
@@ -80,7 +90,7 @@ class HomeScreen extends StatelessWidget {
             spaceInHeight(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 CustomText(
                   text: 'Today\'s Journey',
                   size: 20,

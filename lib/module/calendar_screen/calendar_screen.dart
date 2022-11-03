@@ -58,8 +58,14 @@ class CalendarScreen extends StatelessWidget {
               ),
               body: TabBarView(
                 children: <Widget>[
-                  Text('day'),
-                  Text('week'),
+                  buildMonthTabView(
+                    context,
+                    isMonth: false,
+                  ),
+                  buildMonthTabView(
+                    context,
+                    isMonth: false,
+                  ),
                   buildMonthTabView(context),
                 ],
               ),
@@ -70,9 +76,9 @@ class CalendarScreen extends StatelessWidget {
     );
   }
 
-  void _handleNewDate(date) {
+  /*void _handleNewDate(date) {
     print('Date selected: $date');
-  }
+  }*/
   /* @override
   void initState() {
     super.initState();

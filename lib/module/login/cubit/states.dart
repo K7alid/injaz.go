@@ -1,3 +1,5 @@
+import 'package:injaz_go/module/login/model/login_model.dart';
+
 abstract class LoginStates {}
 
 class AppInitialState extends LoginStates {}
@@ -5,8 +7,8 @@ class AppInitialState extends LoginStates {}
 class AppLoginLoadingState extends LoginStates {}
 
 class AppLoginSuccessState extends LoginStates {
-  //LoginModel loginModel;
-  //AppLoginSuccessState(this.loginModel);
+  LoginModel loginModel;
+  AppLoginSuccessState(this.loginModel);
 }
 
 class AppLoginErrorState extends LoginStates {

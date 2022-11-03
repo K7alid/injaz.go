@@ -1,5 +1,5 @@
+/*
 import 'package:flutter/material.dart';
-import 'package:injaz_go/module/home_screen/home_screen.dart';
 import 'package:injaz_go/shared/components.dart';
 import 'package:injaz_go/shared/constants.dart';
 import 'package:injaz_go/shared/widgets/custom_button.dart';
@@ -8,16 +8,19 @@ import 'package:injaz_go/shared/widgets/custom_text_form_field.dart';
 
 class BuildUsernameAndPasswordPart extends StatelessWidget {
   final TextEditingController usernameController, passwordController;
-  final GlobalKey<FormState> formKey;
+  final Function onButtonPressed;
 
   const BuildUsernameAndPasswordPart({
+    super.key,
     required this.usernameController,
     required this.passwordController,
-    required this.formKey,
+    required this.onButtonPressed,
   });
 
   @override
   Widget build(BuildContext context) {
+    var formKey = GlobalKey<FormState>();
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
@@ -35,56 +38,61 @@ class BuildUsernameAndPasswordPart extends StatelessWidget {
         child: Padding(
           padding:
               const EdgeInsetsDirectional.only(start: 20, end: 20, top: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomText(
-                text: 'Login to continue',
-                alignment: AlignmentDirectional.center,
-                size: 22,
-                isBold: true,
-                color: defaultColor,
-              ),
-              spaceInHeight(height: 20),
-              CustomTextFormField(
-                  label: 'Username',
-                  prefix: Icons.person_outline,
-                  radius: 7,
-                  textInputType: TextInputType.emailAddress,
-                  controller: usernameController,
-                  validate: (value) {
-                    if (value.isEmpty) {
-                      return 'Username must not be empty';
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const CustomText(
+                  text: 'Login to continue',
+                  alignment: AlignmentDirectional.center,
+                  size: 22,
+                  isBold: true,
+                  color: defaultColor,
+                ),
+                spaceInHeight(height: 20),
+                CustomTextFormField(
+                    label: 'Username',
+                    prefix: Icons.person_outline,
+                    radius: 7,
+                    textInputType: TextInputType.emailAddress,
+                    controller: usernameController,
+                    validate: (String value) {
+                      if (value.isEmpty) {
+                        return 'Username must not be empty';
+                      }
+                    }),
+                spaceInHeight(height: 15),
+                CustomTextFormField(
+                    label: 'Password',
+                    prefix: Icons.lock_outline,
+                    radius: 7,
+                    isPassword: true,
+                    onSuffixPressed: () {},
+                    textInputType: TextInputType.visiblePassword,
+                    controller: passwordController,
+                    validate: (String value) {
+                      if (value.isEmpty) {
+                        return 'Password must not be empty';
+                      }
+                    }),
+                spaceInHeight(height: 20),
+                CustomButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      onButtonPressed();
                     }
-                  }),
-              spaceInHeight(height: 15),
-              CustomTextFormField(
-                  label: 'Password',
-                  prefix: Icons.lock_outline,
+                  },
                   radius: 7,
-                  isPassword: true,
-                  onSuffixPressed: () {},
-                  textInputType: TextInputType.visiblePassword,
-                  controller: passwordController,
-                  validate: (value) {
-                    if (value.isEmpty) {
-                      return 'Password must not be empty';
-                    }
-                  }),
-              spaceInHeight(height: 20),
-              CustomButton(
-                onPressed: () {
-                  navigateTo(context, HomeScreen());
-                  if (formKey.currentState!.validate()) {}
-                },
-                radius: 7,
-                background: secondaryColor,
-                text: 'login',
-              ),
-            ],
+                  background: secondaryColor,
+                  text: 'login',
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
+*/

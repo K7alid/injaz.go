@@ -10,3 +10,4 @@ const secondaryNotificationColor = Color(0xFFEAD4BA);
 const primaryNotificationColor = Color(0xFF1F3781);
 const thirdlyNotificationColor = Color(0xFFAAAAAA);
 const String assetImageBaseUrl = 'assets/images/';
+String token = '';
