@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injaz_go/module/customer_detail_screen/customer_detail_screen.dart';
+import 'package:injaz_go/module/route_screen/cubit/route_cubit.dart';
 import 'package:injaz_go/module/route_screen/model/route_tasks.dart';
 import 'package:injaz_go/shared/components.dart';
 import 'package:injaz_go/shared/constants.dart';
@@ -11,22 +13,29 @@ class RouteScreenBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: ListView.builder(
-        itemCount: routeTasks.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              navigateTo(context, CustomerDetailScreen(index: index));
+    return BlocConsumer<RouteCubit, RouteState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        var routeCubit = RouteCubit.get(context);
+
+        return Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: ListView.builder(
+            itemCount: routeTasks.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  navigateTo(context, CustomerDetailScreen(index: index));
+                },
+                child: Container(
+                  child: buildTimelineTile(index, context),
+                ),
+              );
             },
-            child: Container(
-              child: buildTimelineTile(index, context),
-            ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 

@@ -15,7 +15,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<dynamic> cards = [];
 
   void getCards() {
-    emit(GetDataLoadingState());
+    emit(GetCardsDataLoadingState());
     DioHelper.getData(
       url: 'api/GetCards',
       query: {},
@@ -24,9 +24,10 @@ class HomeCubit extends Cubit<HomeState> {
       print(value.data.runtimeType);
       cards = jsonDecode(value.data);
       print(cards[0].name);
+      emit(GetCardsDataSuccessState());
     }).catchError((error) {
       print('the error in home cubit is $error');
-      emit(GetDataErrorState(error.toString()));
+      emit(GetCardsDataErrorState(error.toString()));
     });
   }
 }

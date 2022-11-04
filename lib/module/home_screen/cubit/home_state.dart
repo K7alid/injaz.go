@@ -4,12 +4,12 @@ abstract class HomeState {}
 
 class HomeInitial extends HomeState {}
 
-class GetDataLoadingState extends HomeState {}
+class GetCardsDataLoadingState extends HomeState {}
 
-class GetDataSuccessState extends HomeState {}
+class GetCardsDataSuccessState extends HomeState {}
 
-class GetDataErrorState extends HomeState {
+class GetCardsDataErrorState extends HomeState {
   final String error;
 
-  GetDataErrorState(this.error);
+  GetCardsDataErrorState(this.error);
 }
