@@ -30,7 +30,7 @@ class DioHelper {
     );
   }
 
-  static Future<Response> getData({
+  static getData({
     required String url,
     required Map<String, dynamic> query,
   }) async {
@@ -38,10 +38,12 @@ class DioHelper {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'bearer ${CacheHelper.getData(key: 'tok')}',
     };
-    return await dio.get(
+    var response;
+    response = await dio.get(
       url,
       queryParameters: query,
     );
+    return response.data;
   }
 
   /*static Future<Response> getData({path, token, query}) async {

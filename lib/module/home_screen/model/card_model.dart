@@ -4,10 +4,11 @@
 
 import 'dart:convert';
 
-List<CardModel> welcomeFromJson(String str) =>
+// ignore: non_constant_identifier_names
+List<CardModel> CardModelFromJson(String str) =>
     List<CardModel>.from(json.decode(str).map((x) => CardModel.fromJson(x)));
 
-String welcomeToJson(List<CardModel> data) =>
+String CardModelToJson(List<CardModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class CardModel {

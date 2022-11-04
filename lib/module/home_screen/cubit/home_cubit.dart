@@ -12,7 +12,7 @@ class HomeCubit extends Cubit<HomeState> {
   static HomeCubit get(context) => BlocProvider.of(context);
 
   CardModel? cardModel;
-  List<dynamic> cards = [];
+  List<CardModel> cards = [];
 
   void getCards() {
     emit(GetDataLoadingState());
@@ -20,12 +20,14 @@ class HomeCubit extends Cubit<HomeState> {
       url: 'api/GetCards',
       query: {},
     ).then((value) {
-      print('the data in home cubit is ${value.data}');
-      print(value.data.runtimeType);
-      cards = jsonDecode(value.data);
-      print(cards[0].name);
+      print('the data in home cubit is ${value}');
+      print(value.runtimeType);
+      print(CardModel.fromJson(value[0]));
+      CardModel go = CardModel.fromJson(value[0]);
+      print(go.name);
+      // cards = List<CardModel>.fromJson(json.encode(value));
     }).catchError((error) {
-      print('the error in home cubit is $error');
+      print('the error  $error');
       emit(GetDataErrorState(error.toString()));
     });
   }
