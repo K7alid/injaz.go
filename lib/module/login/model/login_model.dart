@@ -1,13 +1,3 @@
-// To parse this JSON data, do
-//
-//     final welcome = welcomeFromJson(jsonString);
-
-import 'dart:convert';
-
-LoginModel welcomeFromJson(String str) => LoginModel.fromJson(json.decode(str));
-
-String welcomeToJson(LoginModel data) => json.encode(data.toJson());
-
 class LoginModel {
   LoginModel({
     this.accessToken,

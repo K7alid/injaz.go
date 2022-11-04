@@ -7,23 +7,18 @@ class CustomTextFormField extends StatelessWidget {
   final double radius;
   final TextInputType textInputType;
   final TextEditingController controller;
-  final Function? onSubmitted;
-  final Function? onChange;
-  final Function? onTap;
   final Function validate;
   final Function? onSuffixPressed;
   final bool isPassword;
 
-  CustomTextFormField({
+  const CustomTextFormField({
+    super.key,
     required this.label,
     this.radius = 0.0,
     required this.textInputType,
     required this.controller,
     required this.validate,
     this.isPassword = false,
-    this.onTap,
-    this.onChange,
-    this.onSubmitted,
     this.prefix,
     this.suffix,
     this.onSuffixPressed,
@@ -32,21 +27,13 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       obscureText: isPassword,
       validator: (value) {
         validate(value);
         return null;
       },
       controller: controller,
-      onFieldSubmitted: (value) {
-        onSubmitted!(value);
-      },
-      onChanged: (value) {
-        onChange!(value);
-      },
-      onTap: () {
-        onTap!();
-      },
       keyboardType: textInputType,
       decoration: InputDecoration(
         border: OutlineInputBorder(

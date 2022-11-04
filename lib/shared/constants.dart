@@ -11,3 +11,4 @@ const primaryNotificationColor = Color(0xFF1F3781);
 const thirdlyNotificationColor = Color(0xFFAAAAAA);
 const String assetImageBaseUrl = 'assets/images/';
 String token = '';
+const String baseURL = 'http://41.65.69.179:8085/';

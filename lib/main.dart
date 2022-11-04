@@ -4,12 +4,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:injaz_go/app_localization.dart';
 import 'package:injaz_go/module/home_screen/home_screen.dart';
 import 'package:injaz_go/module/login/login_screen.dart';
+import 'package:injaz_go/shared/bloc_observer.dart';
 import 'package:injaz_go/shared/constants.dart';
 import 'package:injaz_go/shared/network/local/cache_helper.dart';
 import 'package:injaz_go/shared/network/remote/dio_helper.dart';
-
-import 'module/login/cubit/cubit.dart';
-import 'module/login/cubit/states.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,13 +21,13 @@ void main() async {
   } else {
     widget = LoginScreen();
   }
-  Bloc.observer;
   BlocOverrides.runZoned(
     () {
       runApp(MyApp(
         startWidget: widget,
       ));
     },
+    blocObserver: MyBlocObserver(),
   );
 }
 
@@ -39,35 +37,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (BuildContext context) => LoginCubit(),
-        child: BlocConsumer<LoginCubit, LoginStates>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              supportedLocales: [
-                Locale('ar'),
-                Locale('en'),
-              ],
-              localizationsDelegates: [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate
-              ],
-              localeResolutionCallback: (deviceLocale, supportedLocales) {
-                for (var locale in supportedLocales) {
-                  if (deviceLocale != null &&
-                      deviceLocale.languageCode == locale.languageCode) {
-                    return deviceLocale;
-                  }
-                }
-                return supportedLocales.first;
-              },
-              home: startWidget,
-            );
-          },
-        ));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      supportedLocales: [
+        Locale('ar'),
+        Locale('en'),
+      ],
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      localeResolutionCallback: (deviceLocale, supportedLocales) {
+        for (var locale in supportedLocales) {
+          if (deviceLocale != null &&
+              deviceLocale.languageCode == locale.languageCode) {
+            return deviceLocale;
+          }
+        }
+        return supportedLocales.first;
+      },
+      home: startWidget,
+    );
   }
 }

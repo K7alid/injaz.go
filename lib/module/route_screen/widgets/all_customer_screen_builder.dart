@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:injaz_go/module/customer_detail_screen/customer_detail_screen.dart';
 import 'package:injaz_go/module/route_screen/model/route_tasks.dart';
 import 'package:injaz_go/shared/components.dart';
 import 'package:injaz_go/shared/constants.dart';
@@ -13,7 +12,7 @@ class AllCustomerScreenBuilder extends StatelessWidget {
       child: ListView.separated(
         itemBuilder: (context, index) => InkWell(
           onTap: () {
-            navigateTo(context, CustomerDetailScreen(index: index));
+            //navigateTo(context, CustomerDetailScreen(index: index));
           },
           child: Container(
             height: 100,
