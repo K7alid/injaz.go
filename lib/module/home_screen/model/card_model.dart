@@ -1,13 +1,9 @@
-// To parse this JSON data, do
-//
-//     final welcome = welcomeFromJson(jsonString);
-
 import 'dart:convert';
 
-List<CardModel> welcomeFromJson(String str) =>
-    List<CardModel>.from(json.decode(str).map((x) => CardModel.fromJson(x)));
+List<CardModel> cardModelFromJson(List<dynamic> cards) =>
+    List<CardModel>.from(cards.map((x) => CardModel.fromJson(x)));
 
-String welcomeToJson(List<CardModel> data) =>
+String cardModelToJson(List<CardModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class CardModel {

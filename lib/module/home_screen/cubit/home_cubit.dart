@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injaz_go/module/home_screen/model/card_model.dart';
 import 'package:injaz_go/shared/network/remote/dio_helper.dart';
@@ -11,7 +9,6 @@ class HomeCubit extends Cubit<HomeState> {
 
   static HomeCubit get(context) => BlocProvider.of(context);
 
-  CardModel? cardModel;
   List<dynamic> cards = [];
 
   void getCards() {
@@ -21,8 +18,7 @@ class HomeCubit extends Cubit<HomeState> {
       query: {},
     ).then((value) {
       print('the data in home cubit is ${value.data}');
-      print(value.data.runtimeType);
-      cards = jsonDecode(value.data);
+      cards = cardModelFromJson(value.data);
       print(cards[0].name);
       emit(GetCardsDataSuccessState());
     }).catchError((error) {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injaz_go/module/home_screen/cubit/home_cubit.dart';
-import 'package:injaz_go/module/home_screen/model/task_model.dart';
 import 'package:injaz_go/module/home_screen/widgets/build_grid_view_item.dart';
 import 'package:injaz_go/module/route_screen/route_screen.dart';
 import 'package:injaz_go/shared/components.dart';
@@ -19,11 +18,18 @@ class HomeScreen extends StatelessWidget {
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {},
         builder: (context, state) {
+          var cubit = HomeCubit.get(context);
+
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0.0,
-              title: const CustomText(text: 'SLA-MOBILE-DEMO'),
+              title: const CustomText(
+                text: 'Injaz.Go',
+                color: primaryColor,
+                size: 20,
+                isBold: true,
+              ),
               actions: [
                 IconButton(
                   onPressed: () {
@@ -95,20 +101,10 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   spaceInHeight(height: 30),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      CustomText(
-                        text: 'Today\'s Journey',
-                        size: 20,
-                        isBold: true,
-                      ),
-                      CustomText(
-                        text: 'DM10002',
-                        color: primaryColor,
-                        isBold: true,
-                      ),
-                    ],
+                  const CustomText(
+                    text: 'Today\'s Journey',
+                    size: 20,
+                    isBold: true,
                   ),
                   spaceInHeight(height: 30),
                   Expanded(
@@ -117,9 +113,9 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       crossAxisSpacing: 0.0,
                       mainAxisSpacing: 0.0,
-                      children: List.generate(tasks.length, (index) {
+                      children: List.generate(cubit.cards.length, (index) {
                         return Center(
-                          child: buildGridViewItem(tasks[index]),
+                          child: buildGridViewItem(cubit.cards[index]),
                         );
                       }),
                     ),

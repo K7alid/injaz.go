@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injaz_go/module/route_screen/cubit/route_cubit.dart';
@@ -16,6 +17,8 @@ class RouteScreen extends StatelessWidget {
       child: BlocConsumer<RouteCubit, RouteState>(
         listener: (context, state) {},
         builder: (context, state) {
+          var cubit = RouteCubit.get(context);
+
           return DefaultTabController(
               initialIndex: 0,
               length: 2,
@@ -55,8 +58,24 @@ class RouteScreen extends StatelessWidget {
                 ),
                 body: TabBarView(
                   children: <Widget>[
-                    RouteScreenBuilder(),
-                    AllCustomerScreenBuilder(),
+                    ConditionalBuilder(
+                      condition: cubit.routes.isEmpty,
+                      builder: (context) =>
+                          RouteScreenBuilder(routeModel: cubit.routes),
+                      fallback: (context) => const Center(
+                          child: CircularProgressIndicator(
+                        color: primaryColor,
+                      )),
+                    ),
+                    ConditionalBuilder(
+                      condition: cubit.routes.isEmpty,
+                      builder: (context) =>
+                          AllCustomerScreenBuilder(routeModel: cubit.routes),
+                      fallback: (context) => const Center(
+                          child: CircularProgressIndicator(
+                        color: primaryColor,
+                      )),
+                    ),
                   ],
                 ),
               ));

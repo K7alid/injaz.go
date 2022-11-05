@@ -1,45 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injaz_go/module/customer_detail_screen/customer_detail_screen.dart';
-import 'package:injaz_go/module/route_screen/cubit/route_cubit.dart';
-import 'package:injaz_go/module/route_screen/model/route_tasks.dart';
+import 'package:injaz_go/module/route_screen/model/route_model.dart';
 import 'package:injaz_go/shared/components.dart';
 import 'package:injaz_go/shared/constants.dart';
 import 'package:injaz_go/shared/widgets/custom_text.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 class RouteScreenBuilder extends StatelessWidget {
-  int totalSteps = routeTasks.length;
+  final List<RouteModel> routeModel;
+  int totalSteps = 5;
+  RouteScreenBuilder({super.key, required this.routeModel});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RouteCubit, RouteState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        var routeCubit = RouteCubit.get(context);
-
-        return Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: ListView.builder(
-            itemCount: routeTasks.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  navigateTo(context, CustomerDetailScreen(index: index));
-                },
-                child: Container(
-                  child: buildTimelineTile(index, context),
-                ),
-              );
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: ListView.builder(
+        itemCount: routeModel.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              navigateTo(
+                  context,
+                  CustomerDetailScreen(
+                    index: index,
+                    routeModel: routeModel,
+                  ));
             },
-          ),
-        );
-      },
+            child: Container(
+              child: buildTimelineTile(index, routeModel, context),
+            ),
+          );
+        },
+      ),
     );
   }
 
-  Widget buildTimelineTile(int index, context) {
+  Widget buildTimelineTile(int index, List<RouteModel> routeModel, context) {
     return TimelineTile(
       alignment: TimelineAlign.manual,
       lineXY: 0.0,
@@ -71,14 +69,14 @@ class RouteScreenBuilder extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomText(
-                text: routeTasks[index].customerName,
+                text: routeModel[index].customer.name.toString(),
                 isBold: true,
                 color: primaryColor,
               ),
               spaceInHeight(height: 7),
               CustomText(
                 text:
-                    '${routeTasks[index].city}, ${routeTasks[index].taskName}',
+                    '${routeModel[index].customer.address}, ${routeModel[index].tasks[index].name}',
                 size: 14,
                 color: Colors.grey,
               ),
@@ -91,18 +89,16 @@ class RouteScreenBuilder extends StatelessWidget {
 }
 
 Widget buildIndicator(index) {
-  return Container(
-    child: Material(
-      elevation: 5,
-      borderRadius: BorderRadius.circular(7),
-      child: Container(
-        decoration: BoxDecoration(
-          color: primaryColor,
-          borderRadius: BorderRadius.circular(7),
-        ),
-        child: Center(
-          child: Text((index + 1).toString()),
-        ),
+  return Material(
+    elevation: 5,
+    borderRadius: BorderRadius.circular(7),
+    child: Container(
+      decoration: BoxDecoration(
+        color: primaryColor,
+        borderRadius: BorderRadius.circular(7),
+      ),
+      child: Center(
+        child: Text((index + 1).toString()),
       ),
     ),
   );

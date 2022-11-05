@@ -11,7 +11,7 @@ class RouteCubit extends Cubit<RouteState> {
 
   static RouteCubit get(context) => BlocProvider.of(context);
 
-  RouteModel? routeModel;
+  List<RouteModel> routes = [];
 
   void getRoutes() {
     emit(GetRoutesDataLoadingState());
@@ -19,9 +19,10 @@ class RouteCubit extends Cubit<RouteState> {
       url: 'api/route',
       query: {},
     ).then((value) {
+      print(value.runtimeType);
+      print(value.data.runtimeType);
       print('the data in home cubit is ${value.data}');
-      routeModel = RouteModel.fromJson(value.data);
-      print(routeModel?.tasks);
+      routes = routeModelFromJson(value.data);
       emit(GetRoutesDataSuccessState());
     }).catchError((error) {
       print('the error in route cubit is $error');
