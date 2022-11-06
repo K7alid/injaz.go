@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injaz_go/module/route_screen/model/route_model.dart';
 import 'package:injaz_go/shared/network/remote/dio_helper.dart';

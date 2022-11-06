@@ -8,6 +8,7 @@ class CustomText extends StatelessWidget {
   final bool isBold;
 
   const CustomText({
+    super.key,
     required this.text,
     this.color = Colors.black,
     this.size = 16,

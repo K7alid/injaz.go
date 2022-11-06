@@ -61,7 +61,7 @@ class Customer {
   });
 
   int id;
-  String address;
+  String? address;
   String name;
   int gender;
   dynamic externalSysId;
@@ -126,7 +126,7 @@ class Task {
   });
 
   int index;
-  String icon;
+  String? icon;
   Description name;
   Description description;
   String widget;

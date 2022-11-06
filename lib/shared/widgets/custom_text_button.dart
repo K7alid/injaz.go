@@ -6,7 +6,8 @@ class CustomTextButton extends StatelessWidget {
   final Function onPressed;
   final Color color;
 
-  CustomTextButton({
+  const CustomTextButton({
+    super.key,
     this.color = Colors.blue,
     required this.onPressed,
     required this.text,

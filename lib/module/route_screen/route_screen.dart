@@ -60,21 +60,21 @@ class RouteScreen extends StatelessWidget {
                   children: <Widget>[
                     ConditionalBuilder(
                       condition: cubit.routes.isEmpty,
-                      builder: (context) =>
-                          RouteScreenBuilder(routeModel: cubit.routes),
-                      fallback: (context) => const Center(
+                      builder: (context) => const Center(
                           child: CircularProgressIndicator(
                         color: primaryColor,
                       )),
+                      fallback: (context) =>
+                          RouteScreenBuilder(routeModel: cubit.routes),
                     ),
                     ConditionalBuilder(
                       condition: cubit.routes.isEmpty,
-                      builder: (context) =>
-                          AllCustomerScreenBuilder(routeModel: cubit.routes),
-                      fallback: (context) => const Center(
+                      builder: (context) => const Center(
                           child: CircularProgressIndicator(
                         color: primaryColor,
                       )),
+                      fallback: (context) =>
+                          AllCustomerScreenBuilder(routeModel: cubit.routes),
                     ),
                   ],
                 ),

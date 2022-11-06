@@ -8,7 +8,7 @@ import 'package:timeline_tile/timeline_tile.dart';
 
 class RouteScreenBuilder extends StatelessWidget {
   final List<RouteModel> routeModel;
-  int totalSteps = 5;
+  int totalSteps = 7;
   RouteScreenBuilder({super.key, required this.routeModel});
 
   @override
@@ -76,7 +76,7 @@ class RouteScreenBuilder extends StatelessWidget {
               spaceInHeight(height: 7),
               CustomText(
                 text:
-                    '${routeModel[index].customer.address}, ${routeModel[index].tasks[index].name}',
+                    '${routeModel[index].customer.address ?? 'the value is null'}, ${routeModel[index].tasks[index].name}',
                 size: 14,
                 color: Colors.grey,
               ),

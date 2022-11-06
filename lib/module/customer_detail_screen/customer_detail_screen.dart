@@ -22,7 +22,7 @@ class CustomerDetailScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               color: Colors.black,
             )),
@@ -110,8 +110,8 @@ class CustomerDetailScreen extends StatelessWidget {
             spaceInHeight(height: 10),
             Container(
               color: Colors.grey[300],
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
+              child: const Padding(
+                padding: EdgeInsets.all(15.0),
                 child: CustomText(
                   text: 'Other Tasks',
                 ),
