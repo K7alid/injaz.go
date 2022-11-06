@@ -32,8 +32,13 @@ class MainDrawer extends StatelessWidget {
             buildListTile('Logout'.tr(context), Icons.logout, () {
               CacheHelper.signOut(context);
             }),
-            buildListTile('Language'.tr(context), Icons.language, () {
-              BlocProvider.of<LocaleCubit>(context).changeLanguage('ar');
+            buildListTile('Language'.tr(context), Icons.language, () async {
+              if ('Language'.tr(context) == 'English') {
+                print('Language'.tr(context));
+                BlocProvider.of<LocaleCubit>(context).changeLanguage('en');
+              } else {
+                BlocProvider.of<LocaleCubit>(context).changeLanguage('ar');
+              }
             }),
           ],
         ),

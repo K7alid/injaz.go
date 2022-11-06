@@ -52,6 +52,7 @@ class MyApp extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           return MaterialApp(
+            locale: state.locale,
             debugShowCheckedModeBanner: false,
             supportedLocales: const [
               Locale('ar'),

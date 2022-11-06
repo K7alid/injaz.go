@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:injaz_go/app_localization.dart';
 import 'package:injaz_go/module/home_screen/cubit/home_cubit.dart';
 import 'package:injaz_go/module/home_screen/widgets/build_grid_view_item.dart';
@@ -43,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                     },
                     child: Container(
                       padding: const EdgeInsets.all(7),
-                      height: 70,
+                      height: 75,
                       decoration: BoxDecoration(
                         color: primaryColor,
                         borderRadius: BorderRadius.circular(10),
@@ -61,12 +62,14 @@ class HomeScreen extends StatelessWidget {
                                 isBold: true,
                                 size: 18,
                               ),
-                              Expanded(
-                                child: FittedBox(
-                                  child: CustomText(
-                                    text: 'StartYourDailyJourney'.tr(context),
-                                    color: Colors.white,
-                                  ),
+                              ScreenUtilInit(
+                                builder:
+                                    (BuildContext context, Widget? child) =>
+                                        CustomText(
+                                  size: ScreenUtil().setSp(15),
+                                  text: 'StartYourDailyJourney'.tr(context),
+                                  color: Colors.white,
+                                  isBold: true,
                                 ),
                               ),
                             ],
