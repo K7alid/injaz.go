@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:injaz_go/module/customer_detail_screen/model/customer_detail_model.dart';
+import 'package:injaz_go/module/route_screen/model/route_model.dart';
 import 'package:injaz_go/shared/components.dart';
 import 'package:injaz_go/shared/widgets/custom_text.dart';
 
-Widget buildCustomerTasks() => ListView.separated(
+Widget buildCustomerTasks(List<Task> tasks) => ListView.separated(
       itemBuilder: (context, index) => Row(
         children: [
           Icon(
-            customerTasks[index].icon,
+            Icons.speed_outlined,
             size: 50,
             color: Colors.grey[600],
           ),
@@ -16,13 +16,13 @@ Widget buildCustomerTasks() => ListView.separated(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
-                text: customerTasks[index].taskName,
+                text: tasks[index].name.toString(),
                 color: Colors.grey[600]!,
                 size: 18,
                 isBold: true,
               ),
               CustomText(
-                text: customerTasks[index].taskDetail,
+                text: tasks[index].description.toString(),
                 color: Colors.grey,
                 size: 13,
               ),
@@ -33,5 +33,5 @@ Widget buildCustomerTasks() => ListView.separated(
       separatorBuilder: (context, index) => const Divider(
         thickness: 1,
       ),
-      itemCount: customerTasks.length,
+      itemCount: tasks.length,
     );

@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 class CustomerTask {
@@ -39,3 +40,4 @@ List<CustomerTask> customerTasks = [
     icon: Icons.location_on,
   ),
 ];
+*/

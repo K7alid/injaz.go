@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:injaz_go/app_localization.dart';
 import 'package:injaz_go/module/customer_detail_screen/widget/build_cusomer_tasks.dart';
 import 'package:injaz_go/module/route_screen/model/route_model.dart';
 import 'package:injaz_go/shared/components.dart';
@@ -6,11 +7,9 @@ import 'package:injaz_go/shared/constants.dart';
 import 'package:injaz_go/shared/widgets/custom_text.dart';
 
 class CustomerDetailScreen extends StatelessWidget {
-  final int index;
-  final List<RouteModel> routeModel;
+  final RouteModel routes;
   CustomerDetailScreen({
-    required this.index,
-    required this.routeModel,
+    required this.routes,
   });
 
   @override
@@ -26,8 +25,8 @@ class CustomerDetailScreen extends StatelessWidget {
               Icons.arrow_back,
               color: Colors.black,
             )),
-        title:
-            CustomText(text: 'Customer | ${routeModel[index].customer.name}'),
+        title: CustomText(
+            text: '${'Customer'.tr(context)} | ${routes.customer.name}'),
         centerTitle: true,
       ),
       body: Padding(
@@ -45,13 +44,13 @@ class CustomerDetailScreen extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CustomText(
-                      text: 'Customer Name',
-                      size: 13,
+                    CustomText(
+                      text: 'CustomerName'.tr(context),
+                      size: 15,
                       color: primaryColor,
                     ),
                     CustomText(
-                      text: routeModel[index].customer.name,
+                      text: routes.customer.name,
                       size: 18,
                       isBold: true,
                       color: primaryColor,
@@ -74,9 +73,9 @@ class CustomerDetailScreen extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CustomText(
-                      text: 'Pendings Deliveries',
-                      size: 13,
+                    CustomText(
+                      text: 'PendingDeliveries'.tr(context),
+                      size: 15,
                       color: Colors.red,
                     ),
                     const CustomText(
@@ -100,9 +99,9 @@ class CustomerDetailScreen extends StatelessWidget {
                   size: 50,
                 ),
                 spaceInWidth(width: 15),
-                const CustomText(
-                  text: 'Active Campaign',
-                  size: 13,
+                CustomText(
+                  text: 'ActiveCampaign'.tr(context),
+                  size: 15,
                   color: Colors.red,
                 ),
               ],
@@ -110,16 +109,17 @@ class CustomerDetailScreen extends StatelessWidget {
             spaceInHeight(height: 10),
             Container(
               color: Colors.grey[300],
-              child: const Padding(
-                padding: EdgeInsets.all(15.0),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
                 child: CustomText(
-                  text: 'Other Tasks',
+                  text: 'OtherTasks'.tr(context),
+                  size: 17,
                 ),
               ),
             ),
             spaceInHeight(height: 10),
             Expanded(
-              child: buildCustomerTasks(),
+              child: buildCustomerTasks(routes.tasks),
             ),
           ],
         ),

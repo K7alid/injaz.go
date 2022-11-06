@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injaz_go/app_localization.dart';
 import 'package:injaz_go/module/home_screen/cubit/home_cubit.dart';
 import 'package:injaz_go/module/home_screen/widgets/build_grid_view_item.dart';
+import 'package:injaz_go/module/home_screen/widgets/main_drawer.dart';
 import 'package:injaz_go/module/route_screen/route_screen.dart';
 import 'package:injaz_go/shared/components.dart';
 import 'package:injaz_go/shared/constants.dart';
-import 'package:injaz_go/shared/network/local/cache_helper.dart';
 import 'package:injaz_go/shared/widgets/custom_text.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -21,40 +22,16 @@ class HomeScreen extends StatelessWidget {
           var cubit = HomeCubit.get(context);
 
           return Scaffold(
+            drawer: MainDrawer(),
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: primaryColor,
               elevation: 0.0,
-              title: const CustomText(
-                text: 'Injaz.Go',
-                color: primaryColor,
+              title: CustomText(
+                text: 'InjazGo'.tr(context),
+                color: Colors.white,
                 size: 20,
                 isBold: true,
               ),
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    CacheHelper.signOut(context);
-                  },
-                  icon: const Icon(
-                    Icons.logout,
-                    color: primaryColor,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.person_outline,
-                    color: primaryColor,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.menu,
-                    color: primaryColor,
-                  ),
-                ),
-              ],
             ),
             body: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -77,16 +54,20 @@ class HomeScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               CustomText(
-                                text: 'Start Route',
+                                text: 'StartRoute'.tr(context),
                                 color: Colors.white,
                                 isBold: true,
                                 size: 18,
                               ),
-                              CustomText(
-                                text: 'Start your daily journey',
-                                color: Colors.white,
+                              Expanded(
+                                child: FittedBox(
+                                  child: CustomText(
+                                    text: 'StartYourDailyJourney'.tr(context),
+                                    color: Colors.white,
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -101,8 +82,8 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   spaceInHeight(height: 30),
-                  const CustomText(
-                    text: 'Today\'s Journey',
+                  CustomText(
+                    text: 'TodayJourney'.tr(context),
                     size: 20,
                     isBold: true,
                   ),

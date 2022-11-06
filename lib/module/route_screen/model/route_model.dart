@@ -24,7 +24,7 @@ class RouteModel {
   int id;
   String code;
   DateTime visitDate;
-  VisitType visitType;
+  String visitType;
   Customer customer;
   Product product;
   List<Task> tasks;
@@ -33,7 +33,7 @@ class RouteModel {
         id: json["Id"],
         code: json["Code"],
         visitDate: DateTime.parse(json["VisitDate"]),
-        visitType: visitTypeValues.map[json["VisitType"]]!,
+        visitType: json["VisitType"],
         customer: Customer.fromJson(json["Customer"]),
         product: Product.fromJson(json["Product"]),
         tasks: List<Task>.from(json["Tasks"].map((x) => Task.fromJson(x))),
@@ -43,7 +43,7 @@ class RouteModel {
         "Id": id,
         "Code": code,
         "VisitDate": visitDate.toIso8601String(),
-        "VisitType": visitTypeValues.reverse[visitType],
+        "VisitType": visitType,
         "Customer": customer.toJson(),
         "Product": product.toJson(),
         "Tasks": List<dynamic>.from(tasks.map((x) => x.toJson())),
@@ -127,8 +127,8 @@ class Task {
 
   int index;
   String? icon;
-  Description name;
-  Description description;
+  String? name;
+  String? description;
   String widget;
   bool done;
   int dependOn;
@@ -136,8 +136,8 @@ class Task {
   factory Task.fromJson(Map<String, dynamic> json) => Task(
         index: json["Index"],
         icon: json["Icon"],
-        name: descriptionValues.map[json["Name"]]!,
-        description: descriptionValues.map[json["Description"]]!,
+        name: json["Name"],
+        description: json["Description"],
         widget: json["Widget"],
         done: json["Done"],
         dependOn: json["DependOn"],
@@ -146,45 +146,10 @@ class Task {
   Map<String, dynamic> toJson() => {
         "Index": index,
         "Icon": icon,
-        "Name": descriptionValues.reverse[name],
-        "Description": descriptionValues.reverse[description],
+        "Name": name,
+        "Description": description,
         "Widget": widget,
         "Done": done,
         "DependOn": dependOn,
       };
-}
-
-enum Description {
-  START_VISIT,
-  ADD_SPARE_PART,
-  ADD_SERVICE,
-  END_VISIT,
-  RESCHEDULE,
-  START_VISIT_TO_CONTINUE_MAINTENANCE
-}
-
-final descriptionValues = EnumValues({
-  "Add Service": Description.ADD_SERVICE,
-  "Add Spare Part": Description.ADD_SPARE_PART,
-  "End Visit": Description.END_VISIT,
-  "Reschedule": Description.RESCHEDULE,
-  "Start Visit": Description.START_VISIT,
-  "Start visit to continue maintenance":
-      Description.START_VISIT_TO_CONTINUE_MAINTENANCE
-});
-
-enum VisitType { MAINTENANCE }
-
-final visitTypeValues = EnumValues({"Maintenance": VisitType.MAINTENANCE});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap = {};
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap;
-    return reverseMap;
-  }
 }

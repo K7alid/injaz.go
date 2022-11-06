@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injaz_go/app_localization.dart';
 import 'package:injaz_go/module/home_screen/home_screen.dart';
 import 'package:injaz_go/module/login/widgets/build_all_images_with_text.dart';
 import 'package:injaz_go/shared/components.dart';
@@ -28,8 +29,7 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is AppLoginErrorState) {
             showToast(
-              text:
-                  'Make sure that ur data is right or u are not connected with internet',
+              text: 'WarningMessage'.tr(context),
               state: ToastStates.ERROR,
             );
           }
@@ -102,8 +102,8 @@ class LoginScreen extends StatelessWidget {
                                         ),
                                       ),
                                       spaceInHeight(height: 20),
-                                      const CustomText(
-                                        text: 'Welcome back!',
+                                      CustomText(
+                                        text: 'WelcomeBack'.tr(context),
                                         size: 25,
                                         isBold: true,
                                         color: Colors.white,
@@ -139,8 +139,9 @@ class LoginScreen extends StatelessWidget {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    const CustomText(
-                                                      text: 'Login to continue',
+                                                    CustomText(
+                                                      text: 'LoginToContinue'
+                                                          .tr(context),
                                                       alignment:
                                                           AlignmentDirectional
                                                               .center,
@@ -150,7 +151,8 @@ class LoginScreen extends StatelessWidget {
                                                     ),
                                                     spaceInHeight(height: 20),
                                                     CustomTextFormField(
-                                                        label: 'Username',
+                                                        label: 'Username'
+                                                            .tr(context),
                                                         prefix: Icons
                                                             .person_outline,
                                                         radius: 7,
@@ -167,7 +169,8 @@ class LoginScreen extends StatelessWidget {
                                                         }),
                                                     spaceInHeight(height: 15),
                                                     CustomTextFormField(
-                                                        label: 'Password',
+                                                        label: 'Password'
+                                                            .tr(context),
                                                         prefix:
                                                             Icons.lock_outline,
                                                         radius: 7,
@@ -223,7 +226,8 @@ class LoginScreen extends StatelessWidget {
                                                         radius: 7,
                                                         background:
                                                             secondaryColor,
-                                                        text: 'login',
+                                                        text:
+                                                            'Login'.tr(context),
                                                       ),
                                                       fallback: (context) =>
                                                           const Center(

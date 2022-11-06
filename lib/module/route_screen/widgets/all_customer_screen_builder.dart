@@ -23,8 +23,7 @@ class AllCustomerScreenBuilder extends StatelessWidget {
             navigateTo(
                 context,
                 CustomerDetailScreen(
-                  index: index,
-                  routeModel: routeModel,
+                  routes: routeModel[index],
                 ));
           },
           child: SizedBox(
@@ -44,11 +43,11 @@ class AllCustomerScreenBuilder extends StatelessWidget {
                     ),
                     spaceInHeight(height: 5),
                     CustomText(
-                      text: routeModel[index].tasks[index].name.toString(),
+                      text: routeModel[index].customer.address.toString(),
                     ),
                     spaceInHeight(height: 5),
                     CustomText(
-                      text: routeModel[index].customer.id.toString(),
+                      text: routeModel[index].code,
                     ),
                   ],
                 ),

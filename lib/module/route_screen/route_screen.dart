@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injaz_go/app_localization.dart';
 import 'package:injaz_go/module/route_screen/cubit/route_cubit.dart';
 import 'package:injaz_go/module/route_screen/widgets/all_customer_screen_builder.dart';
 import 'package:injaz_go/module/route_screen/widgets/route_screen_builder.dart';
@@ -26,12 +27,8 @@ class RouteScreen extends StatelessWidget {
                 backgroundColor: landColor,
                 appBar: AppBar(
                   backgroundColor: landColor,
-                  leading: const Icon(
-                    Icons.menu,
-                    color: Colors.black,
-                  ),
-                  title: const CustomText(
-                    text: 'Route | 02 OCT, SUN',
+                  title: CustomText(
+                    text: 'InjazGo'.tr(context),
                     color: Colors.black,
                   ),
                   actions: [
@@ -43,15 +40,15 @@ class RouteScreen extends StatelessWidget {
                       ),
                     )
                   ],
-                  bottom: const TabBar(
+                  bottom: TabBar(
                     unselectedLabelColor: Colors.grey,
                     labelColor: Colors.black,
                     tabs: <Widget>[
                       Tab(
-                        text: 'Route',
+                        text: 'Route'.tr(context),
                       ),
                       Tab(
-                        text: 'All Customers',
+                        text: 'AllCustomers'.tr(context),
                       ),
                     ],
                   ),

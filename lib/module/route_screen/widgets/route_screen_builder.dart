@@ -8,7 +8,7 @@ import 'package:timeline_tile/timeline_tile.dart';
 
 class RouteScreenBuilder extends StatelessWidget {
   final List<RouteModel> routeModel;
-  int totalSteps = 7;
+  // int totalSteps = routeModel.length;
   RouteScreenBuilder({super.key, required this.routeModel});
 
   @override
@@ -24,8 +24,7 @@ class RouteScreenBuilder extends StatelessWidget {
               navigateTo(
                   context,
                   CustomerDetailScreen(
-                    index: index,
-                    routeModel: routeModel,
+                    routes: routeModel[index],
                   ));
             },
             child: Container(
@@ -42,7 +41,7 @@ class RouteScreenBuilder extends StatelessWidget {
       alignment: TimelineAlign.manual,
       lineXY: 0.0,
       isFirst: index == 0 ? true : false,
-      isLast: index == totalSteps - 1 ? true : false,
+      isLast: index == routeModel.length - 1 ? true : false,
       indicatorStyle: IndicatorStyle(
         width: 20,
         height: 20,
@@ -75,8 +74,7 @@ class RouteScreenBuilder extends StatelessWidget {
               ),
               spaceInHeight(height: 7),
               CustomText(
-                text:
-                    '${routeModel[index].customer.address ?? 'the value is null'}, ${routeModel[index].tasks[index].name}',
+                text: routeModel[index].customer.address.toString(),
                 size: 14,
                 color: Colors.grey,
               ),

@@ -4,8 +4,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:injaz_go/app_localization.dart';
 import 'package:injaz_go/module/home_screen/home_screen.dart';
 import 'package:injaz_go/module/login/login_screen.dart';
+import 'package:injaz_go/shared/app_cubit/app_cubit.dart';
 import 'package:injaz_go/shared/bloc_observer.dart';
 import 'package:injaz_go/shared/constants.dart';
+import 'package:injaz_go/shared/cubit/locale_cubit.dart';
 import 'package:injaz_go/shared/network/local/cache_helper.dart';
 import 'package:injaz_go/shared/network/remote/dio_helper.dart';
 
@@ -37,28 +39,43 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      supportedLocales: const [
-        Locale('ar'),
-        Locale('en'),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AppCubit(),
+        ),
+        BlocProvider(
+          create: (context) => LocaleCubit()..getSavedLanguage(),
+        ),
       ],
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
-      ],
-      localeResolutionCallback: (deviceLocale, supportedLocales) {
-        for (var locale in supportedLocales) {
-          if (deviceLocale != null &&
-              deviceLocale.languageCode == locale.languageCode) {
-            return deviceLocale;
-          }
-        }
-        return supportedLocales.first;
-      },
-      home: startWidget,
+      child: BlocConsumer<LocaleCubit, ChangeLocaleState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            supportedLocales: const [
+              Locale('ar'),
+              Locale('en'),
+            ],
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate
+            ],
+            localeResolutionCallback: (deviceLocale, supportedLocales) {
+              for (var locale in supportedLocales) {
+                if (deviceLocale != null &&
+                    deviceLocale.languageCode == locale.languageCode) {
+                  return deviceLocale;
+                }
+              }
+              return supportedLocales.first;
+            },
+            home: startWidget,
+          );
+        },
+      ),
     );
   }
 }

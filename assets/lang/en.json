@@ -1,3 +1,22 @@
 {
-  "Welcome": "Welcome"
+  "WelcomeBack": "Welcome back!",
+  "Welcome": "Welcome!",
+  "TodayJourney": "Today's Journey",
+  "StartRoute": "Start Route",
+  "StartYourDailyJourney": "Start Your Daily Journey",
+  "InjazGo": "Injaz.Go",
+  "Route": "Route",
+  "AllCustomers": "All Customers",
+  "LoginToContinue": "Login To Continue",
+  "Username":"Username",
+  "Password":"Password",
+  "Login":"Login",
+  "Logout":"Logout",
+  "WarningMessage":"Please make sure that your data is right or you have an internet",
+  "Customer": "Customer",
+  "CustomerName":"CustomerName",
+  "PendingDeliveries": "Pending Deliveries",
+  "ActiveCampaign": "Active Campaign",
+  "OtherTasks":"Other Tasks",
+  "Language":"العربية"
 }

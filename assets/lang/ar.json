@@ -1,3 +1,22 @@
 {
-  "Welcome": "مرحباً"
+  "WelcomeBack": "مرحبا بعودتك!",
+  "Welcome": "مرحبا!",
+  "TodayJourney": "رحلة العمل",
+  "StartRoute": "ابدأ رحلتك",
+  "StartYourDailyJourney": "ابدأ رحلتك اليومية",
+  "InjazGo": "إنجاز جو",
+  "Route": "العمل",
+  "AllCustomers": "كل العملاء",
+  "LoginToContinue": "سجل دخول للأستمرار",
+  "Username":"اسم المستخدم",
+  "Password":"الرقم السري",
+  "Login":"تسجيل الدخول",
+  "Logout":"تسجيل الخروج",
+  "WarningMessage":"من فضلك تأكد من البيانات المدخله او تأكد من وجود انترنت",
+  "Customer": "العميل",
+  "CustomerName":"اسم العميل",
+  "PendingDeliveries": "الطلبات المعلقة",
+  "ActiveCampaign": "الحملة النشطة",
+  "OtherTasks":"مهام اخرى",
+  "Language":"English"
 }
