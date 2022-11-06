@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:injaz_go/module/route_screen/model/route_tasks.dart';
+import 'package:injaz_go/module/customer_detail_screen/customer_detail_screen.dart';
+import 'package:injaz_go/module/route_screen/model/route_model.dart';
 import 'package:injaz_go/shared/components.dart';
 import 'package:injaz_go/shared/constants.dart';
 import 'package:injaz_go/shared/widgets/custom_text.dart';
 
 class AllCustomerScreenBuilder extends StatelessWidget {
+  final List<RouteModel> routeModel;
+
+  const AllCustomerScreenBuilder({
+    super.key,
+    required this.routeModel,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -12,9 +20,14 @@ class AllCustomerScreenBuilder extends StatelessWidget {
       child: ListView.separated(
         itemBuilder: (context, index) => InkWell(
           onTap: () {
-            //navigateTo(context, CustomerDetailScreen(index: index));
+            navigateTo(
+                context,
+                CustomerDetailScreen(
+                  index: index,
+                  routeModel: routeModel,
+                ));
           },
-          child: Container(
+          child: SizedBox(
             height: 100,
             width: double.infinity,
             child: Row(
@@ -25,17 +38,17 @@ class AllCustomerScreenBuilder extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomText(
-                      text: routeTasks[index].customerName,
+                      text: routeModel[index].customer.name.toString(),
                       color: primaryColor,
                       size: 18,
                     ),
                     spaceInHeight(height: 5),
                     CustomText(
-                      text: routeTasks[index].taskName,
+                      text: routeModel[index].tasks[index].name.toString(),
                     ),
                     spaceInHeight(height: 5),
                     CustomText(
-                      text: routeTasks[index].customerNumber.toString(),
+                      text: routeModel[index].customer.id.toString(),
                     ),
                   ],
                 ),
@@ -48,8 +61,8 @@ class AllCustomerScreenBuilder extends StatelessWidget {
             ),
           ),
         ),
-        separatorBuilder: (BuildContext context, int index) => Divider(),
-        itemCount: routeTasks.length,
+        separatorBuilder: (BuildContext context, int index) => const Divider(),
+        itemCount: routeModel.length,
       ),
     );
   }

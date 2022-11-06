@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injaz_go/module/home_screen/model/card_model.dart';
 import 'package:injaz_go/shared/network/remote/dio_helper.dart';
@@ -13,22 +11,19 @@ class HomeCubit extends Cubit<HomeState> {
 
   CardModel? cardModel;
   List<CardModel> cards = [];
-
   void getCards() {
-    emit(GetDataLoadingState());
+    emit(GetCardsDataLoadingState());
     DioHelper.getData(
       url: 'api/GetCards',
       query: {},
     ).then((value) {
-      print('the data in home cubit is ${value}');
-      print(value.runtimeType);
-      print(CardModel.fromJson(value[0]));
-      CardModel go = CardModel.fromJson(value[0]);
-      print(go.name);
-      // cards = List<CardModel>.fromJson(json.encode(value));
+      print('the data in home cubit is ${value.data}');
+      cards = cardModelFromJson(value.data);
+      print(cards[0].name);
+      emit(GetCardsDataSuccessState());
     }).catchError((error) {
-      print('the error  $error');
-      emit(GetDataErrorState(error.toString()));
+      print('the error in home cubit is $error');
+      emit(GetCardsDataErrorState(error.toString()));
     });
   }
 }
